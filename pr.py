@@ -1,12 +1,19 @@
-product = []
-with open ('product.csv', 'r', encoding = 'utf-8') as f:
-    for line in f:
-        if '商品,價格' in line:
-            continue
-        name, price = line.strip().split(',')
-        product.append([name,price])
+import os
 
-print(product)    
+product = []
+
+if os.path.isfile('product.csv'):
+    print('找到')
+    with open ('product.csv', 'r', encoding = 'utf-8') as f:
+        for line in f:
+            if '商品,價格' in line:
+                continue
+            name, price = line.strip().split(',')
+            product.append([name,price])
+    print(product)    
+else:
+    print('找不到')    
+
 
 while True:
     name = input('請輸入商品名稱:')
